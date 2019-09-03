@@ -30,17 +30,21 @@ static SVGAParser *sharedParser;
     _imageName = imageName;
     if ([imageName hasPrefix:@"http://"] || [imageName hasPrefix:@"https://"]) {
         [sharedParser parseWithURL:[NSURL URLWithString:imageName] completionBlock:^(SVGAVideoEntity * _Nullable videoItem) {
-            [self setVideoItem:videoItem];
-            if (self.autoPlay) {
-                [self startAnimation];
+            if (videoItem != nil) {
+                [self setVideoItem:videoItem];
+                if (self.autoPlay) {
+                    [self startAnimation];
+                }
             }
         } failureBlock:nil];
     }
     else {
         [sharedParser parseWithNamed:imageName inBundle:nil completionBlock:^(SVGAVideoEntity * _Nonnull videoItem) {
-            [self setVideoItem:videoItem];
-            if (self.autoPlay) {
-                [self startAnimation];
+            if (videoItem != nil) {
+                [self setVideoItem:videoItem];
+                if (self.autoPlay) {
+                    [self startAnimation];
+                }
             }
         } failureBlock:nil];
     }
