@@ -26,7 +26,7 @@ static NSOperationQueue *unzipQueue;
 
 + (void)load {
     parseQueue = [NSOperationQueue new];
-    parseQueue.maxConcurrentOperationCount = 8;
+    parseQueue.maxConcurrentOperationCount = 1;
     unzipQueue = [NSOperationQueue new];
     unzipQueue.maxConcurrentOperationCount = 1;
 }
